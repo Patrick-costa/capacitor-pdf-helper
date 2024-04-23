@@ -1,6 +1,6 @@
 {
   "name": "capacitor-pdf-helper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "PDF Helper",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Patrick-costa.git"
+    "url": "git+https://github.com/Patrick-costa/capacitor-pdf-helper.git"
   },
   "bugs": {
     "url": "https://github.com/Patrick-costa/issues"
