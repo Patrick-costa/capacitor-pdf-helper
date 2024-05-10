@@ -70,6 +70,25 @@ public class PDFHelperPlugin extends Plugin {
 
     @PluginMethod
     public void readPDFAnnotations(PluginCall call) throws Exception {
+        url = call.getString("url", "");
+
+        if (url != null && url.contains("_capacitor_")) {
+            url = url.replace("_capacitor_", "");
+        }
+
+        if (url != null && url.contains("file://")) {
+            url = url.replace("file://", "");
+        }
+
+
+        try {
+            _document = null;
+           openPDFDocument(url);
+        } catch (Exception e) {
+            Log.d("errorOpenFunction", e.getMessage() != null ? e.getMessage() : "");
+            throw new RuntimeException(e);
+        }
+
         JSONArray resArray = new JSONArray();
         JSObject ret = new JSObject();
         JSONArray annots = getAllAnnotations();
@@ -154,7 +173,7 @@ public class PDFHelperPlugin extends Plugin {
                     docSavePending = true;
                 }
 
-                JSObject json = new JSObject();
+                JSONObject json = new JSONObject();
 
                 json.put("fgId", fgId.getString());
                 json.put("name", annotation.getAnnotationName());

@@ -18,8 +18,8 @@ export class PDFHelperWeb extends WebPlugin implements PDFHelperPlugin {
     return ret;
   }
 
-  readPDFAnnotations(forcePdfId: string): Promise<IPHAnnotation[]> {
-    let ret: any = forcePdfId;
+  readPDFAnnotations(options: IOpenOptions): Promise<IPHAnnotation[]> {
+    let ret: any = options;
     return ret;
   }
 

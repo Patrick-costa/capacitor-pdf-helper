@@ -55,12 +55,12 @@ close() => Promise<any>
 ### readPDFAnnotations(...)
 
 ```typescript
-readPDFAnnotations(forcePdfId: string) => Promise<IPHAnnotation[]>
+readPDFAnnotations(options: IOpenOptions) => Promise<IPHAnnotation[]>
 ```
 
-| Param            | Type                |
-| ---------------- | ------------------- |
-| **`forcePdfId`** | <code>string</code> |
+| Param         | Type                                                  |
+| ------------- | ----------------------------------------------------- |
+| **`options`** | <code><a href="#iopenoptions">IOpenOptions</a></code> |
 
 **Returns:** <code>Promise&lt;IPHAnnotation[]&gt;</code>
 

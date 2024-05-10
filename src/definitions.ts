@@ -3,7 +3,7 @@ export interface PDFHelperPlugin {
   
     close(): Promise<any>;
   
-    readPDFAnnotations(forcePdfId: string): Promise<IPHAnnotation[]>;
+    readPDFAnnotations(options: IOpenOptions): Promise<IPHAnnotation[]>;
   
     getImageListFromResources(): Promise<IPHResourceImage[]>;
   
