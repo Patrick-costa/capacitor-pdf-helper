@@ -3,6 +3,14 @@ import { WebPlugin } from '@capacitor/core';
 import type { IOpenOptions, IPHAnnotation, IPHDocumentInfo, IPHImageMetadata, IPHResourceImage, PDFHelperPlugin } from './definitions';
 
 export class PDFHelperWeb extends WebPlugin implements PDFHelperPlugin {
+
+  constructor(){
+    super({
+      name: 'PDFHelperPlugin',
+      platforms: ['web', 'ios', 'android']
+    });
+  }
+
   async echo(options: { value: string }): Promise<{ value: string }> {
     console.log('ECHO', options);
     return options;
