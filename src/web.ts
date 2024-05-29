@@ -1,6 +1,6 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { IOpenOptions, IPHAnnotation, IPHDocumentInfo, IPHImageMetadata, IPHResourceImage, PDFHelperPlugin } from './definitions';
+import type { IOpenOptions, IPHAnnotation, IPHDocumentInfo, IPHImageMetadata, IPHResourceImage, PDFHelperPlugin, optionsImagesFromAnnotation } from './definitions';
 
 export class PDFHelperWeb extends WebPlugin implements PDFHelperPlugin {
 
@@ -31,8 +31,8 @@ export class PDFHelperWeb extends WebPlugin implements PDFHelperPlugin {
     return ret;
   }
 
-  getImageFromAnnotation(pidx: number, aidx: number): Promise<IPHImageMetadata> {
-    let ret: any = pidx + aidx;
+  getImageFromAnnotation(options: optionsImagesFromAnnotation): Promise<IPHImageMetadata> {
+    let ret: any = options.pidx + options.aidx;
     return ret;
   }
 

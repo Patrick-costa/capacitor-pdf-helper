@@ -81,13 +81,12 @@ getImageListFromResources() => Promise<IPHResourceImage[]>
 ### getImageFromAnnotation(...)
 
 ```typescript
-getImageFromAnnotation(pidx: number, aidx: number) => Promise<IPHImageMetadata>
+getImageFromAnnotation(options: optionsImagesFromAnnotation) => Promise<IPHImageMetadata>
 ```
 
-| Param      | Type                |
-| ---------- | ------------------- |
-| **`pidx`** | <code>number</code> |
-| **`aidx`** | <code>number</code> |
+| Param         | Type                                                                                |
+| ------------- | ----------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#optionsimagesfromannotation">optionsImagesFromAnnotation</a></code> |
 
 **Returns:** <code>Promise&lt;<a href="#iphimagemetadata">IPHImageMetadata</a>&gt;</code>
 
@@ -160,5 +159,13 @@ getImageFromResources(pidx: number, keyname: string) => Promise<IPHImageMetadata
 | -------------- | ------------------- |
 | **`imageUri`** | <code>string</code> |
 | **`mimeType`** | <code>string</code> |
+
+
+#### optionsImagesFromAnnotation
+
+| Prop       | Type                |
+| ---------- | ------------------- |
+| **`pidx`** | <code>number</code> |
+| **`aidx`** | <code>number</code> |
 
 </docgen-api>

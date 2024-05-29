@@ -8,4 +8,5 @@ CAP_PLUGIN(PDFHelperPlugin, "PDFHelper",
             CAP_PLUGIN_METHOD(open, CAPPluginReturnPromise);
             CAP_PLUGIN_METHOD(close, CAPPluginReturnPromise);
             CAP_PLUGIN_METHOD(readPDFAnnotations, CAPPluginReturnPromise);
+            CAP_PLUGIN_METHOD(getImageFromAnnotation, CAPPluginReturnPromise);
 )

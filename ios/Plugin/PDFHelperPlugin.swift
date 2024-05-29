@@ -128,6 +128,77 @@ public class PDFHelperPlugin: CAPPlugin {
             throw PDFHelperError.DocumentNotOpened;
         }
     }
+    
+    @objc func getImageFromAnnotation (_ call: CAPPluginCall){
+
+        if(_document?.isPagesLoaded == false) {
+            _document?.loadPages();
+        }
+        
+        let inpidx: Int = call.getInt("pidx", 0)
+        
+        // Frontend counts pages beginning with 1
+        let pidx: Int = inpidx - 1;
+        let aidx: Int = call.getInt("aidx", -1);
+
+        do{
+            try checkDocument();
+
+            let page = try _document!.getPage(pageIndex: pidx);
+
+            let imageObjs = try page.getAnnotation(annotIdx: aidx).images;
+            
+            if(imageObjs.count <= 0){
+                call.resolve([
+                    "images": []
+                ])
+                return;
+            }
+            
+            let imageObj = imageObjs[0];
+            let res = saveImage(imageStream: imageObj.stream!);
+            
+            if(res.value(forKey: "error") != nil){
+                call.reject("error")
+                return;
+            }
+            
+            call.resolve([
+                "images": res as Dictionary
+            ])
+
+            }catch {
+                call.reject(error.localizedDescription)
+            }
+
+    }
+    
+    private func saveImage(imageStream: Data) -> NSMutableDictionary {
+           let param:NSMutableDictionary = NSMutableDictionary();
+           param.setValue("", forKey: "imageUri");
+
+           do {
+               let img: UIImage! = UIImage(data: imageStream);
+               if(img != nil) {
+                   let stream = img.jpegData(compressionQuality: 1.0) as NSData?;
+                   let uuid = UUID().uuidString;
+                   let fname: String = NSTemporaryDirectory() + uuid + ".jpg";
+                   let uri = URL(fileURLWithPath: fname);
+                   try stream?.write(toFile: fname);
+
+                   param.setValue(uri.absoluteString, forKey: "imageUri");
+                   param.setValue("image/jpeg", forKey: "mimeType");
+               }
+               else {
+                   param.setValue("", forKey: "imageUri");
+                   param.setValue("application/x-empty", forKey: "mimeType");
+               }
+           }catch{
+               param.setValue("ERROR!", forKey: "error");
+           }
+
+           return param;
+       }
 
     
 }

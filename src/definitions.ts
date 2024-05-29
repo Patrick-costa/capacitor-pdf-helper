@@ -7,9 +7,14 @@ export interface PDFHelperPlugin {
   
     getImageListFromResources(): Promise<IPHResourceImage[]>;
   
-    getImageFromAnnotation(pidx: number, aidx: number): Promise<IPHImageMetadata>;
+    getImageFromAnnotation(options: optionsImagesFromAnnotation): Promise<IPHImageMetadata>;
   
     getImageFromResources(pidx: number, keyname: string): Promise<IPHImageMetadata>;
+  }
+
+  export interface optionsImagesFromAnnotation{
+    pidx: number;
+    aidx: number;
   }
   
   export interface IPHResourceImage {
